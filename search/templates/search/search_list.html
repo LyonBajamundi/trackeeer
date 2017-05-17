@@ -1,0 +1,80 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  	
+  	<link rel=icon href={% static 'icon/icon16.png' %} sizes="16x16" type="image/png">
+  	<link rel=icon href={% static 'icon/icon.ico' %} sizes="16x16 24x24 32x32 48x48 64x64 96x96 128x128 256x256" type="image/vnd.microsoft.icon">
+  	<link rel=icon href={% static 'icon/icon.icns' %} sizes="16x16 24x24 32x32 48x48 64x64 96x96 128x128 256x256">
+  	<link rel=icon href={% static 'icon/icon57.png' %} sizes="57x57" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}" /> 
+
+  	<title> TrackEEEr </title>
+</head>
+<body>
+	<div class="container">
+	  	<div class="page-header">
+	  		<a href="/"><img src="{% static 'img/logo.png' %}"></a>
+	  	</div>
+	</div>
+
+	<div class="container">
+		<form class="form-horizontal col-xs-6 col-xs-offset-3">
+		 	<div class="form-group">
+	        	<div class="inner-addon right-addon">
+	         	 	<i class="glyphicon glyphicon-search"></i>
+	          		<input type="text" class="form-control" name="search" list="faculty" autocomplete="off" placeholder="e.g. Tiglao, Nestor Michael" />
+	          		<datalist id="faculty">
+					    {% for faculty in faculty %}
+					    	<option value="{{ faculty.name }}" />
+					    {% endfor %}			        
+					</datalist>
+	        	</div>
+	  		</div>
+		</form>
+
+		<div class="row" id="results">
+	 		<div class="col-xs-6 col-xs-offset-3">
+				<p>{{ result }}</p>
+	   		</div>
+		</div>
+	</div>
+
+	<footer class="footer">
+	  	<div class="container-fluid">
+	  		<div class="row">
+    			<div class="col-xs-10 col-xs-offset-1" id="ftcont">
+	    			<p>TrackEEEr is a project for CoE197 Internet of things under Sir Nestor Michael Tiglao.</p>
+    			</div>
+	  		</div>
+	  		<div class="row" id="team">
+				    {% for team in team %}
+					    {% if forloop.first %}
+							<div class="col-xs-2 col-xs-offset-2">
+						{% else %}
+							<div class="col-xs-2">
+						{% endif %}
+				        <h1>{{ team.0 }}</h1>
+				        <p>
+				        {% for team in team.1 %}
+				        	{{ team }}
+				        	{% if not forloop.last %}
+								|
+							{% endif %}
+				   		{% endfor %}
+				   		</p>
+			   		</div>
+				    {% endfor %}
+		    </div>
+  		</div>
+	</footer>
+</body>
+</html>
