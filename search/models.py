@@ -5,34 +5,20 @@ from django.db import models
 
 # Create your models here.
 
-from django.db import models
-from django.utils import timezone
-
-class Faculty(models.Model):
-	name = models.CharField(max_length=50)
-
-	def __str__(self):
-		return self.name
-
-	class Meta:
-		verbose_name_plural = "Faculty"
-
 class Server(models.Model):
-	name = models.CharField(max_length=50)
+	tracked_user = models.CharField(max_length=50)
 	desc = models.TextField()
-	location = models.CharField(max_length=50)
-	push_date = models.DateTimeField(blank=True, null=True)
-
-	def pubish(self):
-		self.publish_date = timezone.now()
-		self.save()
+	gen_location= models.CharField(max_length=50)
+	last_update = models.DateTimeField(blank=True, null=True)
 
 	def __str__(self):
-		return self.location
+		return "%s is in %s as of %s" % (self.tracked_user, self.gen_location, self.last_update)
 
 	class Meta:
-		get_latest_by = 'push_date'
+		get_latest_by = 'last_update'
 		verbose_name_plural = "Server"
+		db_table = 'trackeeed'
+		managed = True
 
 class Team(models.Model):
 	name = models.CharField(max_length=50)

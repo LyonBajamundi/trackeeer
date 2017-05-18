@@ -31,10 +31,10 @@
 		 	<div class="form-group">
 	        	<div class="inner-addon right-addon">
 	         	 	<i class="glyphicon glyphicon-search"></i>
-	          		<input type="text" class="form-control" name="search" list="faculty" autocomplete="off" placeholder="e.g. Tiglao, Nestor Michael" />
+	          		<input type="text" class="form-control" name="search" list="faculty" autocomplete="off" placeholder="Who are you looking for?" />
 	          		<datalist id="faculty">
 					    {% for faculty in faculty %}
-					    	<option value="{{ faculty.name }}" />
+					    	<option value="{{ faculty }}" />
 					    {% endfor %}			        
 					</datalist>
 	        	</div>
