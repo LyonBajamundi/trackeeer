@@ -1,4 +1,4 @@
-#T rackEEEr Project under CoE 197 IoT
+# TrackEEEr Project under CoE 197 IoT
 
 - Server table from django is _trackeeer_ with the following fields:
   - tracked_user
